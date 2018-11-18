@@ -17,25 +17,28 @@ int main()
     int y;
     for (int k = 0; k<4; k++) {
         for (int l = 0; l<4; l++) {
+            int a = 0;
             pole[k][l] = rand() %16;
+proverka:
             for (int m = 0; m<k; m++) {
-                for (int n = 1; n<l; n++) {
-                    while (pole[k][l] == pole[k-m][l-n]) {
+                for (int n = 1; n<4; n++) {
+                    while (pole[k][l] == pole[k-m][4-n] && l != 4-n && k != k-m) {
                         pole[k][l] = rand() %16;
+                        a++;
                     }
                 }
             }
-            cout << pole[k][l];
+            if (a > 0) {
+                a = 0;
+                goto proverka;
+            }
         }
-        cout << endl;
     }
-/*
     for (int k = 0; k<4; k++) {
         for (int l = 0; l<4; l++) {
-            cout << pole[k][l];
+            cout << pole[k][l] << ' ';
         }
         cout << endl;
     }
-*/
     return 0;
 }
